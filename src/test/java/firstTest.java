@@ -1,11 +1,11 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class firstTest {
+public class FirstTest {
 
     @Test
     public void mainTest(){
-        first a = new first();
+        First a = new First();
         assertEquals("what ever this is hi", a.toString());
     }
 }
