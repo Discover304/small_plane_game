@@ -1,7 +1,0 @@
--classpath 'C:\\Users\\22759\\Documents\\A_Projects\\Java\\small_plane_game\\build\\classes\\java\\main;C:\\Users\\22759\\Documents\\A_Projects\\Java\\small_plane_game\\build\\resources\\main'
--d 'C:\\Users\\22759\\Documents\\A_Projects\\Java\\small_plane_game\\build\\docs\\javadoc'
--doctitle 'small_plane_game 1.0-SNAPSHOT API'
--notimestamp 
--quiet 
--windowtitle 'small_plane_game 1.0-SNAPSHOT API'
-'C:\\Users\\22759\\Documents\\A_Projects\\Java\\small_plane_game\\src\\main\\java\\first.java'
