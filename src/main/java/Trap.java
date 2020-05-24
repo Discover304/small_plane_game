@@ -1,9 +1,7 @@
-import java.io.File;
-
 /**
  * this is the trap object in the game
  */
-public abstract class Trap extends GameObject implements Display{
+abstract class Trap extends GameObject implements DisplayData {
 
     /**
      * this is the initialization of the general data involved
@@ -30,7 +28,7 @@ public abstract class Trap extends GameObject implements Display{
 /**
  * this is the first trap object in the game
  */
-class BabyTrap extends Trap{
+class BabyTrap extends Trap {
 
     /**
      * this is the initialization of the general data involved
@@ -42,20 +40,30 @@ class BabyTrap extends Trap{
 
     /**
      * this is the path of the object pic
-     * @return the file
      */
     @Override
-    public File imageFile() {//todo
-        return null;
+    public void defineImageFile() {//todo
     }
 
     /**
      * this is the display of the object should include orientation of the pic
      * @param x the place parameter
      * @param y the place parameter
+     * @param degree the orientation of the pic
      */
     @Override
-    public void display(int x, int y) {//todo
+    public void defineInitialPosition(int x, int y, double degree) {
+
+    }
+
+    /**
+     * this defines the way to update the frame from the previous method
+     * @param x the position parameter need update
+     * @param y the position parameter need update
+     * @param degree the orientation parameter need update
+     */
+    @Override
+    public void displayUpdateMethod(int x, int y, double degree) {
 
     }
 

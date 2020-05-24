@@ -1,11 +1,10 @@
-import java.io.File;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
  * this is the plane object in the game
  */
-public abstract class Plane extends GameObject implements Display{
+abstract class Plane extends GameObject implements DisplayData {
 
     /**
      * this defines the shield of the plane, which can be regenerate.
@@ -52,6 +51,7 @@ public abstract class Plane extends GameObject implements Display{
     /**
      * this is for judge if some thing cause damage by others.
      * @param gameObject this is a collection of all object of this game
+     *
      * @return a boolean value to change something.
      */
     @Override
@@ -94,25 +94,36 @@ class BabyPlane extends Plane {
      */
     public BabyPlane(Side side) {
         super(5, 100, 3, side, 500, 1000,
-                100, new double[] {Math.PI / 2, Math.PI / 2});
+                100, new double[]{Math.PI / 2, Math.PI / 2});
     }
 
     /**
      * this is the path of the object pic
-     * @return the file
      */
     @Override
-    public File imageFile() {//todo
-        return null;
+    public void defineImageFile() {//todo
     }
 
     /**
      * this is the display of the object should include orientation of the pic
      * @param x the place parameter
      * @param y the place parameter
+     * @param degree the orientation of the pic
      */
     @Override
-    public void display(int x, int y) {//todo this need to be done later
+    public void defineInitialPosition(int x, int y, double degree) {
+
+    }
+
+    /**
+     * this defines the way to update the frame from the previous method
+     * @param x the position parameter need update
+     * @param y the position parameter need update
+     * @param degree the orientation parameter need update
+     */
+    @Override
+    public void displayUpdateMethod(int x, int y, double degree) {
+
     }
 
     /**
@@ -121,14 +132,15 @@ class BabyPlane extends Plane {
      */
     @Override
     void defineSpecialSkill() {
-        super.shield*=4;
-        super.shootingSpeed*=3;
-        super.speed*=3;
+        super.shield *= 4;
+        super.shootingSpeed *= 3;
+        super.speed *= 3;
     }
 
     /**
      * this is for judge if some thing can activate their special skill.
      * @param gameObject this is a collection of all object of this game
+     *
      * @return a boolean value to change something.
      */
     @Override

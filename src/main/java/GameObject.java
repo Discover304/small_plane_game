@@ -48,6 +48,7 @@ public abstract class GameObject {
     /**
      * this is for judge if some thing cause damage by others.
      * @param gameObject this is a collection of all object of this game
+     *
      * @return a boolean value to change something.
      */
     abstract boolean ifCauseDamage(GameObject[] gameObject);
@@ -55,6 +56,7 @@ public abstract class GameObject {
     /**
      * this is for judge if some thing can activate their special skill.
      * @param gameObject this is a collection of all object of this game
+     *
      * @return a boolean value to change something.
      */
     abstract boolean ifActiveSkill(GameObject[] gameObject);

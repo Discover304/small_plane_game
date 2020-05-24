@@ -1,9 +1,7 @@
-import java.io.File;
-
 /**
  * this is the bullet object in the game
  */
-public abstract class Bullet extends GameObject implements Display{
+abstract class Bullet extends GameObject implements DisplayData {
 
     /**
      * this is the initialization of the general data involved
@@ -30,7 +28,7 @@ public abstract class Bullet extends GameObject implements Display{
 /**
  * this is the first bullet object in the game
  */
-class BabyBullet extends Bullet{
+class BabyBullet extends Bullet {
 
     /**
      * this is the initialization of the general data involved
@@ -42,20 +40,31 @@ class BabyBullet extends Bullet{
 
     /**
      * this is the path of the object pic
-     * @return the file
      */
     @Override
-    public File imageFile() {//todo
-        return null;
+    public void defineImageFile() {//todo
     }
 
     /**
      * this is the display of the object should include orientation of the pic
      * @param x the place parameter
      * @param y the place parameter
+     * @param degree the orientation of the pic
      */
     @Override
-    public void display(int x, int y) {//todo
+    public void defineInitialPosition(int x, int y, double degree) {
+
+    }
+
+    /**
+     * this defines the way to update the frame from the previous method
+     * @param x the position parameter need update
+     * @param y the position parameter need update
+     * @param degree the orientation parameter need update
+     */
+    @Override
+    public void displayUpdateMethod(int x, int y, double degree) {
+
     }
 
     /**
@@ -64,7 +73,7 @@ class BabyBullet extends Bullet{
      */
     @Override
     void defineSpecialSkill() {
-        super.speed*=1.5;
+        super.speed *= 1.5;
     }
 
     /**
