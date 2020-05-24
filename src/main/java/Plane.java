@@ -2,6 +2,9 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * this is the plane object in the game
+ */
 public abstract class Plane extends GameObject implements Display{
 
     /**

@@ -1,5 +1,8 @@
 import java.io.File;
 
+/**
+ * this is the bullet object in the game
+ */
 public abstract class Bullet extends GameObject implements Display{
 
     /**
@@ -24,6 +27,9 @@ public abstract class Bullet extends GameObject implements Display{
     }
 }
 
+/**
+ * this is the first bullet object in the game
+ */
 class BabyBullet extends Bullet{
 
     /**

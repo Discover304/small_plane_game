@@ -1,5 +1,8 @@
 import java.io.File;
 
+/**
+ * this is the trap object in the game
+ */
 public abstract class Trap extends GameObject implements Display{
 
     /**
@@ -24,6 +27,9 @@ public abstract class Trap extends GameObject implements Display{
     }
 }
 
+/**
+ * this is the first trap object in the game
+ */
 class BabyTrap extends Trap{
 
     /**
