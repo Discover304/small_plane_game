@@ -1,10 +1,18 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
  * this is the plane object in the game
  */
-abstract class Plane extends GameObject implements DisplayData {
+abstract class Plane extends GameObject {
 
     /**
      * this defines the shield of the plane, which can be regenerate.
@@ -101,30 +109,48 @@ class BabyPlane extends Plane {
      * this is the path of the object pic
      */
     @Override
-    public void defineImageFile() {//todo
-    }
-
-    /**
-     * this is the display of the object should include orientation of the pic
-     * @param x the place parameter
-     * @param y the place parameter
-     * @param degree the orientation of the pic
-     */
-    @Override
-    public void defineInitialPosition(int x, int y, double degree) {
-
+    public void defineImageFile() {
+        try {
+            this.image = ImageIO.read(new File("src/main/java/images/data_character_remilia_attackCb011.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * this defines the way to update the frame from the previous method
-     * @param x the position parameter need update
-     * @param y the position parameter need update
-     * @param degree the orientation parameter need update
      */
     @Override
-    public void displayUpdateMethod(int x, int y, double degree) {
+    public void displayUpdateMethod() {
+        if (!(x >= -100 && x <= 500 && y >= -100 && y <= 500)) {
+            this.x = -100;
+            this.y = 200;
+            return;
+        }
+
+        if (Math.random() >= 0.5) {
+            switcher = TestPanel.Switcher.Neg;
+        } else {
+            switcher = TestPanel.Switcher.Posi;
+        }
+
+        int delta = 10;
+
+        this.x += delta;
+
+        switch (switcher) {
+            case Neg:
+                this.y += delta;
+                break;
+            case Posi:
+                this.y -= delta;
+        }
 
     }
+
+    enum Switcher {Posi, Neg}
+
+    TestPanel.Switcher switcher = TestPanel.Switcher.Posi;
 
     /**
      * this defines the special skills of the game object.
@@ -132,9 +158,9 @@ class BabyPlane extends Plane {
      */
     @Override
     void defineSpecialSkill() {
-        super.shield *= 4;
+        super.shield *= 0.8;
         super.shootingSpeed *= 3;
-        super.speed *= 3;
+        super.speed *= 1.5;
     }
 
     /**
@@ -144,7 +170,7 @@ class BabyPlane extends Plane {
      * @return a boolean value to change something.
      */
     @Override
-    boolean ifActiveSkill(GameObject[] gameObject) {//todo
+    boolean ifActiveSkill(GameObject[] gameObject) {
         return false;
     }
 
@@ -159,5 +185,99 @@ class BabyPlane extends Plane {
     @Override
     public String toString() {//todo 介绍
         return "Hello, where am I?";
+    }
+
+    /**
+     * Invoked when a key has been typed.
+     * See the class description for {@link KeyEvent} for a definition of
+     * a key typed event.
+     * @param e the event to be processed
+     */
+    @Override
+    public void keyTyped(KeyEvent e) {
+        char a = e.getKeyChar();
+        if (a == 'j'){
+            defineSpecialSkill();
+        }
+    }
+
+    /**
+     * Invoked when a key has been pressed.
+     * See the class description for {@link KeyEvent} for a definition of
+     * a key pressed event.
+     * @param e the event to be processed
+     */
+    @Override
+    public void keyPressed(KeyEvent e) {
+        char a = e.getKeyChar();
+        int increment = speed;
+        switch (a){
+            case 'a':
+                x-=increment;
+                break;
+            case 'd':
+                x += increment;
+                break;
+            case 'w':
+                y -= increment;
+                break;
+            case 's':
+                y += increment;
+        }
+    }
+
+    /**
+     * Invoked when a key has been released.
+     * See the class description for {@link KeyEvent} for a definition of
+     * a key released event.
+     * @param e the event to be processed
+     */
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        if (side.equals(Side.Hero)) {
+            g.drawImage(image, x, y, 145, 119, null);
+        }
+    }
+
+    /**
+     * When an object implementing interface <code>Runnable</code> is used
+     * to create a thread, starting the thread causes the object's
+     * <code>run</code> method to be called in that separately executing
+     * thread.
+     * <p>
+     * The general contract of the method <code>run</code> is that it may
+     * take any action whatsoever.
+     * @see Thread#run()
+     */
+    @Override
+    public void run() {
+        //initialise all datas
+        defineImageFile();
+        if (side.equals(Side.Enemy)) {
+            defineInitialPosition(200, 100, 0);
+            while (true) {//cycle
+                displayUpdateMethod();
+                try {
+                    Thread.sleep(20);//stop some time
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                repaint();//restart
+            }
+        } else {
+            defineInitialPosition(300, 400, 0);
+            while (true) {//cycle
+                try {
+                    Thread.sleep(20);//stop some time
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                repaint();//restart
+            }
+        }
     }
 }

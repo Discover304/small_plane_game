@@ -17,10 +17,7 @@ public interface DisplayData {
     void defineInitialPosition(int x, int y, double degree);
 
     /**
-     * this defines the way to update the frame from the previous method
-     * @param x the position parameter need update
-     * @param y the position parameter need update
-     * @param degree the orientation parameter need update
+     * this defines the way to update the frame position from the previous method
      */
-    void displayUpdateMethod(int x, int y, double degree);
+    void displayUpdateMethod();
 }

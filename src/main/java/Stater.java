@@ -6,12 +6,17 @@ public class Stater {
     public static void main(String[] args) {
         Window gameWindow = new Window();
 
-        Panel testPanel = new testPanel();
+        //Panel thePanel = new TestPanel();
+        GameObject gameObject = new BabyPlane(Side.Hero);//todo 如果是enemy的话不可以呢
 
-        Thread testThread = new Thread(testPanel);
+        //Thread theThread = new Thread(thePanel);
+        Thread planeThread = new Thread(gameObject);
 
-        testThread.start();
+        //theThread.start();
+        planeThread.start();
 
-        gameWindow.add(testPanel);
+        gameWindow.add(gameObject);
+        gameWindow.addKeyListener(gameObject);
+        //gameWindow.add(thePanel);
     }
 }
