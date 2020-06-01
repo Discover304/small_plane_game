@@ -94,6 +94,7 @@ class TestPanel extends Panel {
     @Override//todo these two part (paint and run is for display something)
     public void paint(Graphics g) {
         g.drawImage(image, x, y, 145, 119, null);
+        System.out.println("paint the panel");
     }
 
     /**
@@ -113,7 +114,8 @@ class TestPanel extends Panel {
         while (true) {//cycle
             displayUpdateMethod();
             try {
-                Thread.sleep(20);//stop some time
+                Thread.sleep(100);//stop some time
+                System.out.println("run panel");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

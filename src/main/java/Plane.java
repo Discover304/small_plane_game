@@ -238,9 +238,15 @@ class BabyPlane extends Plane {
 
     @Override
     public void paint(Graphics g) {
-        if (side.equals(Side.Hero)) {
-            g.drawImage(image, x, y, 145, 119, null);
+        switch(side){
+            case Hero:
+                g.drawImage(image, x, y, 145, 119, null);
+                break;
+            case Enemy:
+                g.drawImage(image, x, y, 144, 119, null);
         }
+        System.out.println("paint the plane");
+
     }
 
     /**
@@ -257,26 +263,31 @@ class BabyPlane extends Plane {
     public void run() {
         //initialise all datas
         defineImageFile();
-        if (side.equals(Side.Enemy)) {
-            defineInitialPosition(200, 100, 0);
-            while (true) {//cycle
-                displayUpdateMethod();
-                try {
-                    Thread.sleep(20);//stop some time
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        switch(side){
+            case Hero: {
+                defineInitialPosition(200, 100, 0);
+                while (true) {//cycle
+                    try {
+                        Thread.sleep(100);//stop some time
+                        System.out.println("run plane");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    repaint();//restart
                 }
-                repaint();//restart
             }
-        } else {
-            defineInitialPosition(300, 400, 0);
-            while (true) {//cycle
-                try {
-                    Thread.sleep(20);//stop some time
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            case Enemy: {
+                defineInitialPosition(300, 400, 0);
+                while (true) {//cycle
+                    displayUpdateMethod();
+                    try {
+                        System.out.println("我不是东");
+                        Thread.sleep(100);//stop some time
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    repaint();//restart
                 }
-                repaint();//restart
             }
         }
     }
