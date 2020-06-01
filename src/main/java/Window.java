@@ -1,118 +1,30 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 
-abstract class Window implements Display {
+class Window extends JFrame {
 
     /**
      * this is the width of the window
      */
-    public int width;
+    public int WIDTH = 600;
 
     /**
      * this is the length of the window
      */
-    public int length;
+    public int HEIGHT = 600;
 
     /**
      * initialise all value required for a window
-     * @param width the width of the window
-     * @param length the length of the window
      */
-    public Window(int width,int length){
-        this.width = width;
-        this.length = length;
-    }
-}
-
-class startWindow extends Window {
-
-    /**
-     * initialise all value required for a window
-     * @param width the width of the window
-     * @param length the length of the window
-     */
-    public startWindow(int width, int length) {
-        super(width, length);
-    }
-
-    /**
-     * this is the path of the object pic
-     * @return the file
-     */
-    @Override
-    public File imageFile() {//todo
-        return null;
-    }
-
-    /**
-     * this is the display of the object should include orientation of the pic
-     * @param x the place parameter
-     * @param y the place parameter
-     */
-    @Override
-    public void display(int x, int y) {//todo
-
-    }
-}
-
-class gameWindow extends Window{
-
-    /**
-     * initialise all value required for a window
-     * @param width the width of the window
-     * @param length the length of the window
-     */
-    public gameWindow(int width, int length) {
-        super(width, length);
-    }
-
-    /**
-     * this is the path of the object pic
-     * @return the file
-     */
-    @Override
-    public File imageFile() {//todo
-        return null;
-    }
-
-    /**
-     * this is the display of the object should include orientation of the pic
-     * @param x the place parameter
-     * @param y the place parameter
-     */
-    @Override
-    public void display(int x, int y) {//todo
-
-    }
-}
-
-class endWindow extends Window{
-
-    /**
-     * initialise all value required for a window
-     * @param width the width of the window
-     * @param length the length of the window
-     */
-    public endWindow(int width, int length) {
-        super(width, length);
-    }
-
-    /**
-     * this is the path of the object pic
-     * @return the file
-     */
-    @Override
-    public File imageFile() {//todo
-        return null;
-    }
-
-    /**
-     * this is the display of the object should include orientation of the pic
-     * @param x the place parameter
-     * @param y the place parameter
-     */
-    @Override
-    public void display(int x, int y) {//todo
-
+    public Window() {
+        this.setSize(WIDTH, HEIGHT);//设置GUI界面height
+        this.setTitle("East-Project");//设置标题
+        this.setResizable(false);//设置窗口大小不可改变
+        this.setLocationRelativeTo(null);//设置窗口位置居中
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//默认关闭操作
+        this.setVisible(true);//设置窗口可见
     }
 }

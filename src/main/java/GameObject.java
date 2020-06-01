@@ -1,9 +1,12 @@
+import javax.swing.*;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.util.Objects;
 
 /**
  * this is the parent class of all object in the game
  */
-public abstract class GameObject {
+public abstract class GameObject extends JLabel implements DisplayData, KeyListener, Runnable{
 
     /**
      * this is an initialisation of the size of all game object.
@@ -19,6 +22,10 @@ public abstract class GameObject {
      * this is an initialisation of the speed of all game object.
      */
     public int speed;
+    protected BufferedImage image;
+    protected int x;
+    protected int y;
+    protected double degree;
 
     /**
      * this is the side of the object
@@ -48,6 +55,7 @@ public abstract class GameObject {
     /**
      * this is for judge if some thing cause damage by others.
      * @param gameObject this is a collection of all object of this game
+     *
      * @return a boolean value to change something.
      */
     abstract boolean ifCauseDamage(GameObject[] gameObject);
@@ -55,6 +63,7 @@ public abstract class GameObject {
     /**
      * this is for judge if some thing can activate their special skill.
      * @param gameObject this is a collection of all object of this game
+     *
      * @return a boolean value to change something.
      */
     abstract boolean ifActiveSkill(GameObject[] gameObject);
@@ -63,6 +72,18 @@ public abstract class GameObject {
      * this defines how the special feature of the plane
      */
     abstract void special();
+
+    /**
+     * this is the display of the object should include orientation of the pic
+     * @param x the place parameter
+     * @param y the place parameter
+     * @param degree the orientation of the pic
+     */
+    public void defineInitialPosition(int x, int y, double degree) {
+        this.x = x;
+        this.y = y;
+        this.degree = degree;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,9 +1,7 @@
-import java.io.File;
-
 /**
- * this is the trap object in the game
+ * this is the bullet object in the game
  */
-public abstract class Trap extends GameObject implements Display{
+abstract class Bullet extends GameObject implements DisplayData {
 
     /**
      * this is the initialization of the general data involved
@@ -12,50 +10,60 @@ public abstract class Trap extends GameObject implements Display{
      * @param speed the speed of some thing move, could be 0.
      * @param side the side of the object.
      */
-    public Trap(int size, int damage, int speed, Side side) {
+    public Bullet(int size, int damage, int speed, Side side) {
         super(size, damage, speed, side);
     }
 
     @Override
-    public String toString() {//todo 补充数据列表
+    public String toString() {//todo 补充数据
         return super.toString();
     }
 
     @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }
 
 /**
- * this is the first trap object in the game
+ * this is the first bullet object in the game
  */
-class BabyTrap extends Trap{
+class BabyBullet extends Bullet {
 
     /**
      * this is the initialization of the general data involved
      * @param side the side of the object.
      */
-    public BabyTrap(Side side) {
-        super(5, 50, 1, side);
+    public BabyBullet(Side side) {
+        super(1, 30, 3, side);
     }
 
     /**
      * this is the path of the object pic
-     * @return the file
      */
     @Override
-    public File imageFile() {//todo
-        return null;
+    public void defineImageFile() {//todo
     }
 
     /**
      * this is the display of the object should include orientation of the pic
      * @param x the place parameter
      * @param y the place parameter
+     * @param degree the orientation of the pic
      */
     @Override
-    public void display(int x, int y) {//todo
+    public void defineInitialPosition(int x, int y, double degree) {
+
+    }
+
+    /**
+     * this defines the way to update the frame from the previous method
+     * @param x the position parameter need update
+     * @param y the position parameter need update
+     * @param degree the orientation parameter need update
+     */
+    @Override
+    public void displayUpdateMethod(int x, int y, double degree) {
 
     }
 
@@ -64,8 +72,8 @@ class BabyTrap extends Trap{
      * different have different special skill and need a special to activate.
      */
     @Override
-    void defineSpecialSkill() {//todo
-
+    void defineSpecialSkill() {
+        super.speed *= 1.5;
     }
 
     /**
